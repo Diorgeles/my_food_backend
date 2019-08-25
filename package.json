@@ -1,0 +1,8 @@
+{
+  "name": "my_food_backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:Diorgeles/my_food_backend.git",
+  "author": "Diorgeles Dias Lima <diorgelesdias@gmail.com>",
+  "license": "MIT"
+}
