@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from model_utils.models import SoftDeletableModel, TimeStampedModel
 
 
 # Create your models here.
@@ -9,18 +10,20 @@ class Recipe(SoftDeletableModel, TimeStampedModel):
     # TODO: Define fields here
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField('Nome', max_length=100, null=True, blank=True)
-    description = models.TextField('Descrição', max_length=255, null=True, blank=True)
-    ingredients = models.ManyToManyField('Ingredientes', max_length=8, editable=False)
-
+    description = models.TextField(
+        'Descrição', null=True, blank=True)
+    ingredients = models.ManyToManyField(
+        'Ingredients', verbose_name='Ingredientes')
+    
     class Meta:
         """Meta definition for Students."""
-
         verbose_name = 'Receita'
         verbose_name_plural = 'Receitas'
 
     def __str__(self):
         """Unicode representation of Students."""
         return self.name
+
 
 class Ingredients(SoftDeletableModel, TimeStampedModel):
 
@@ -29,9 +32,10 @@ class Ingredients(SoftDeletableModel, TimeStampedModel):
         ('cup', 'Xícara'),
     ]
 
-    name = models.CharField('Nome', max_length=100, null=True, blank=True)
-    amount = models.IntegerField('Quatidade', max_length=100, null=True, blank=True)
-    measure = models.CharField('Medida', max_length=100, null=True, blank=True, choices=MEASURE_TYPE)
+    name = models.CharField('Nome', max_length=255, null=True, blank=True)
+    amount = models.IntegerField('Quatidade', null=True, blank=True)
+    measure = models.CharField(
+        'Medida', max_length=10, null=True, blank=True, choices=MEASURE_TYPE)
 
     class Meta:
         verbose_name = 'Ingrediente'
@@ -40,5 +44,3 @@ class Ingredients(SoftDeletableModel, TimeStampedModel):
     def __str__(self):
         """Unicode representation of Students."""
         return self.name
-
-
