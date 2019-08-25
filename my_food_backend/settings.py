@@ -35,6 +35,7 @@ PROJECT_APPS = [
 
 THIRD_PARTY_APPS = [
     'auditlog',
+    'rest_framework'
 ]
 
 CORE_APPS = [

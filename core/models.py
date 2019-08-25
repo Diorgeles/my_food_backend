@@ -14,7 +14,7 @@ class Recipe(SoftDeletableModel, TimeStampedModel):
         'Descrição', null=True, blank=True)
     ingredients = models.ManyToManyField(
         'Ingredients', verbose_name='Ingredientes')
-    
+
     class Meta:
         """Meta definition for Students."""
         verbose_name = 'Receita'
@@ -30,6 +30,7 @@ class Ingredients(SoftDeletableModel, TimeStampedModel):
     MEASURE_TYPE = [
         ('spoon', 'Colher'),
         ('cup', 'Xícara'),
+        ('full', 'Inteiro'),
     ]
 
     name = models.CharField('Nome', max_length=255, null=True, blank=True)
@@ -43,4 +44,4 @@ class Ingredients(SoftDeletableModel, TimeStampedModel):
 
     def __str__(self):
         """Unicode representation of Students."""
-        return self.name
+        return '({} {}) {}'.format(self.amount, self.get_measure_display(), self.name)
