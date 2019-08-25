@@ -2,11 +2,11 @@ version: '3'
 
 services:
   web:
-    image: controle_atividades:0.0.1
+    image: my_food_backend:0.0.1
     build: .
     command: ./runserver
     volumes:
-      - ".:/controle_atividades"
+      - ".:/my_food_backend"
     ports:
       - 8000:8000
     depends_on:
